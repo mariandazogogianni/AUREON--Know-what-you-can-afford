@@ -1,0 +1,114 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* AUREON — dark charcoal base with emerald accents and restrained violet highlights */
+
+    --background: 200 12% 6%;          /* deep charcoal, faint cool tint */
+    --foreground: 150 12% 95%;         /* near-white, faint green tint */
+
+    --card: 200 11% 9%;
+    --card-foreground: 150 12% 95%;
+
+    --popover: 200 12% 8%;
+    --popover-foreground: 150 12% 95%;
+
+    /* Emerald — primary brand accent */
+    --primary: 158 64% 47%;
+    --primary-foreground: 158 90% 8%;
+
+    --secondary: 200 10% 14%;
+    --secondary-foreground: 150 12% 95%;
+
+    --muted: 200 10% 14%;
+    --muted-foreground: 200 8% 62%;
+
+    /* Violet — restrained highlight accent */
+    --accent: 258 72% 66%;
+    --accent-foreground: 258 90% 10%;
+
+    --destructive: 0 72% 58%;
+    --destructive-foreground: 0 0% 100%;
+
+    /* Semantic status colors */
+    --success: 152 60% 45%;
+    --success-foreground: 152 90% 8%;
+
+    --warning: 38 92% 58%;
+    --warning-foreground: 38 90% 10%;
+
+    --danger: 0 74% 60%;
+    --danger-foreground: 0 0% 100%;
+
+    --border: 200 10% 18%;
+    --input: 200 10% 20%;
+    --ring: 158 64% 47%;
+
+    --radius: 0.85rem;
+
+    --font-sans: "Inter", system-ui, sans-serif;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    /* Subtle ambient depth: very restrained radial tints, no heavy gradients */
+    background-image:
+      radial-gradient(
+        60rem 60rem at 110% -10%,
+        hsl(158 64% 47% / 0.06),
+        transparent 60%
+      ),
+      radial-gradient(
+        50rem 50rem at -10% 0%,
+        hsl(258 72% 66% / 0.05),
+        transparent 55%
+      );
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+  }
+
+  /* Refined focus ring for keyboard users */
+  :focus-visible {
+    @apply outline-none ring-2 ring-ring/70 ring-offset-2 ring-offset-background;
+  }
+
+  /* Hide number input spinners for a cleaner currency field */
+  input[type="number"]::-webkit-outer-spin-button,
+  input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  input[type="number"] {
+    -moz-appearance: textfield;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* Soft elevated card surface used across the dashboard */
+  .surface-card {
+    @apply rounded-lg border border-border/70 bg-card/80 backdrop-blur-sm;
+  }
+
+  /* Thin refined divider */
+  .hairline {
+    @apply h-px w-full bg-border/60;
+  }
+}
